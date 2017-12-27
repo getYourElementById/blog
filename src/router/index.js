@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '@/components/login/login'
 import Home from '@/components/homePage/home'
+import Center from '@/components/homePage/center/center'
 
 Vue.use(Router)
 
@@ -20,7 +21,17 @@ export const router = new Router({
       component: Home,
       meta:{
         title:'首页'
-      }
+      },
+      children:[
+        {
+          path: '',
+          name: 'center',
+          component: Center,
+          meta:{
+            title:'个人中心'
+          },
+        }
+      ]
     }
   ]
 })
