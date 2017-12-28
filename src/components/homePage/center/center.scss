@@ -1,0 +1,42 @@
+@import "../../../variable.scss";
+
+
+.wrap{
+	width:1200px;
+	height:auto;
+	margin:0 auto;
+	padding:20px;
+	.before{
+		font-size:$fontSize;
+		color:$fontColor;
+	}
+	.textarea{
+		margin-top:1.2rem;
+	}
+	.send_talking{
+		margin-top:1.2rem;
+		float:right;
+	}
+	.talkList{
+		font-size:1.5rem;
+		color:$fontColor;
+		margin-top:10rem;
+		p{
+			line-height:3rem;
+			font-size:$fontSize;
+		}
+		.talkingItem{
+			margin:2rem;
+			.title{
+				font-size:1.2rem;
+				font-weight:bold;
+			}
+			.text{
+
+			}
+			.creatTime{
+				color:$gray;
+			}
+		}
+	}
+}

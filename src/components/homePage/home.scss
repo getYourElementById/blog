@@ -5,6 +5,8 @@
 		border-bottom:1px #e5e5e5 solid;
 		position:fixed;
 		overflow:hidden;
+		background:#fff;
+		z-index:999;
 		.headerContent{
 			position:relative;
 			width:1200px;
@@ -73,12 +75,5 @@
 			}
 		}
 	
-	}
-	.mainContent{
-		position:absolute;
-		top:100px;
-		margin:0 auto;
-		width:1200px;
-		height:auto;
 	}
 }

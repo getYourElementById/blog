@@ -15,7 +15,7 @@
 				</ul>
 			</div>
 		</div>
-		<div class="mainContent">
+		<div>
 			<router-view/>
 		</div>
 	</div>
