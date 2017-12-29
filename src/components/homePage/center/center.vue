@@ -4,7 +4,7 @@
 			<p class="before">来，说说你在做什么，想什么……</p>
 			<el-input class="textarea" :maxlength="200" type="textarea" :rows="3" placeholder="我想说……" v-model="textarea">
 			</el-input>
-			<el-button type="danger" size="small" :disabled='textarea?false:true' class="send_talking">发表</el-button>
+			<el-button type="danger" size="small" :disabled='textarea?false:true' class="send_talking" @click="send_talking">发表</el-button>
 			<div class="talkList">
 				<div class="talkingItem" v-for="item in talkList" :key="item.id">
 					<p class="title">{{item.title}}</p>
@@ -78,6 +78,28 @@ export default {
 					creatTime:'2017-12-30 09:23'
 				}
 			]
+		}
+	},
+	methods:{
+		send_talking(){
+			let pamrams = {
+				name:'123456',
+				theme:'1',
+				title:'',
+				content:this.textarea
+			}
+			console.log(pamrams)
+			return this.$http.post('/blog/aritcle/save',pamrams,{
+            headers:{
+              'Content-Type':'application/x-www-form-urlencoded;'
+            },
+            emulateJSON:true
+          }).then((response)=>{
+
+				console.log(response)
+			}).catch((error)=>{
+				console.log(error)
+			})
 		}
 	}
 }

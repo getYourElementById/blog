@@ -37,26 +37,26 @@ export default {
   },
   methods:{
     login(){
-      // this.$refs.loginForm.validate((valid)=>{
-      //   var pamrams = {
-      //     userName : this.loginForm.userName,
-      //     passWord : this.loginForm.passWord
-      //   }
-      //   if(valid){
-      //     this.$http.post('/blog/login',pamrams,{
-      //       headers:{
-      //         'Content-Type':'application/x-www-form-urlencoded;'
-      //       },
-      //       emulateJSON:true
-      //     }).then((response)=>{
-      //       console.log(response);
-      //       this.$router.push('home')
-      //     }).catch((error)=>{
+      this.$refs.loginForm.validate((valid)=>{
+        var pamrams = {
+          userName : this.loginForm.userName,
+          passWord : this.loginForm.passWord
+        }
+        if(valid){
+          this.$http.post('/blog/login',pamrams,{
+            headers:{
+              'Content-Type':'application/x-www-form-urlencoded;'
+            },
+            emulateJSON:true
+          }).then((response)=>{
+            console.log(response);
+            this.$router.push('home')
+          }).catch((error)=>{
 
-      //     })
-      //   }
-      // })
-      this.$router.push('home')
+          })
+        }
+      })
+      // this.$router.push('home')
     },
   }
 }
