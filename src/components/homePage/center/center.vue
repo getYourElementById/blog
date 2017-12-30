@@ -89,7 +89,7 @@ export default {
 				content:this.textarea
 			}
 			console.log(pamrams)
-			return this.$http.post('/blog/aritcle/save',pamrams,{
+			return this.$http.post('/blog/article/save',pamrams,{
             headers:{
               'Content-Type':'application/x-www-form-urlencoded;'
             },

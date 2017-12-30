@@ -8,4 +8,11 @@
 	border:1px solid #e0e0e0;
     transform:translate(-50%,-50%);
     border-radius:4px;
+    .registryBtn{
+    	margin-left:20px;
+    	span{
+    		color:#409EFF;
+    		cursor:pointer;
+    	}
+    }
 }

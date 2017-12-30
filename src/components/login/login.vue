@@ -11,7 +11,9 @@
           </el-input>
         </el-form-item>
         <el-form-item>
-        	<el-button size="small" type="primary" @click="login()">登录</el-button>
+        	<el-button size="small" type="primary" @click="login()">{{isLogin?'登录':'注册'}}</el-button>
+          <span class="registryBtn" v-if="isLogin" @click="switchLogin">没有账号?<span>立即注册……</span></span>
+          <span class="registryBtn" v-else @click="switchLogin">已有账号?<span>立即登录……</span></span>
         </el-form-item>
       </el-form>
     </div>
@@ -25,6 +27,7 @@ export default {
   name: 'login',
   data () {
     return {
+      isLogin:true,
       loginForm:{
         userName:null,
         passWord:null,
@@ -58,6 +61,9 @@ export default {
       })
       // this.$router.push('home')
     },
+    switchLogin(){
+      this.isLogin=!this.isLogin;
+    }
   }
 }
 </script>
