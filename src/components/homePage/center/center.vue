@@ -8,8 +8,8 @@
 			<div class="talkList">
 				<div class="talkingItem" v-for="item in talkList" :key="item.id">
 					<p class="title">{{item.title}}</p>
-					<p class="text">{{item.text}}</p>
-					<p class="creatTime">{{item.creatTime}}</p>
+					<p class="text">{{item.content}}</p>
+					<p class="creatTime">{{new Date(item.createDate).toLocaleDateString()}} {{new Date(item.createDate).toLocaleTimeString()}}</p>
 				</div>
 			</div>
 		</div>
@@ -20,87 +20,53 @@
 </template>	
 <script>
 import('./center.scss')
+import localInfo from '@/components/userInfo'
 
 export default {
 	name:"center",
+	created(){
+		this.getData();
+	},
 	data(){
 		return{
+			userName:localInfo.get().name,
 			textarea:null,
-			talkList:[
-				{
-					title:null,
-					text:'人生天地间，若白驹之过客，奔波忙碌都是为了抵达，有沉沉浮浮，也会有海阔天空的美好，恩怨是非，也终是云淡风轻的历练，花开花落轮回间，风景在辗转，总有些留不住的，也总有抵达不了的，淡定豁达才会释然，内心明朗才会踏实快乐。',
-					creatTime:'2017-12-30 09:23'
-				},
-				{
-					title:'佛说：柔和者，自然善良',
-					text:'人生天地间，若白驹之过客，奔波忙碌都是为了抵达，有沉沉浮浮，也会有海阔天空的美好，恩怨是非，也终是云淡风轻的历练，花开花落轮回间，风景在辗转，总有些留不住的，也总有抵达不了的，淡定豁达才会释然，内心明朗才会踏实快乐。',
-					creatTime:'2017-12-30 09:23'
-				},
-				{
-					title:null,
-					text:'人生天地间，若白驹之过客，奔波忙碌都是为了抵达，有沉沉浮浮，也会有海阔天空的美好，恩怨是非，也终是云淡风轻的历练，花开花落轮回间，风景在辗转，总有些留不住的，也总有抵达不了的，淡定豁达才会释然，内心明朗才会踏实快乐。',
-					creatTime:'2017-12-30 09:23'
-				},
-				{
-					title:'佛说：柔和者，自然善良',
-					text:'人生天地间，若白驹之过客，奔波忙碌都是为了抵达，有沉沉浮浮，也会有海阔天空的美好，恩怨是非，也终是云淡风轻的历练，花开花落轮回间，风景在辗转，总有些留不住的，也总有抵达不了的，淡定豁达才会释然，内心明朗才会踏实快乐。',
-					creatTime:'2017-12-30 09:23'
-				},
-				{
-					title:null,
-					text:'人生天地间，若白驹之过客，奔波忙碌都是为了抵达，有沉沉浮浮，也会有海阔天空的美好，恩怨是非，也终是云淡风轻的历练，花开花落轮回间，风景在辗转，总有些留不住的，也总有抵达不了的，淡定豁达才会释然，内心明朗才会踏实快乐。',
-					creatTime:'2017-12-30 09:23'
-				},
-				{
-					title:null,
-					text:'人生天地间，若白驹之过客，奔波忙碌都是为了抵达，有沉沉浮浮，也会有海阔天空的美好，恩怨是非，也终是云淡风轻的历练，花开花落轮回间，风景在辗转，总有些留不住的，也总有抵达不了的，淡定豁达才会释然，内心明朗才会踏实快乐。',
-					creatTime:'2017-12-30 09:23'
-				},
-				{
-					title:null,
-					text:'人生天地间，若白驹之过客，奔波忙碌都是为了抵达，有沉沉浮浮，也会有海阔天空的美好，恩怨是非，也终是云淡风轻的历练，花开花落轮回间，风景在辗转，总有些留不住的，也总有抵达不了的，淡定豁达才会释然，内心明朗才会踏实快乐。',
-					creatTime:'2017-12-30 09:23'
-				},
-				{
-					title:null,
-					text:'人生天地间，若白驹之过客，奔波忙碌都是为了抵达，有沉沉浮浮，也会有海阔天空的美好，恩怨是非，也终是云淡风轻的历练，花开花落轮回间，风景在辗转，总有些留不住的，也总有抵达不了的，淡定豁达才会释然，内心明朗才会踏实快乐。',
-					creatTime:'2017-12-30 09:23'
-				},
-				{
-					title:null,
-					text:'人生天地间，若白驹之过客，奔波忙碌都是为了抵达，有沉沉浮浮，也会有海阔天空的美好，恩怨是非，也终是云淡风轻的历练，花开花落轮回间，风景在辗转，总有些留不住的，也总有抵达不了的，淡定豁达才会释然，内心明朗才会踏实快乐。',
-					creatTime:'2017-12-30 09:23'
-				},
-				{
-					title:null,
-					text:'人生天地间，若白驹之过客，奔波忙碌都是为了抵达，有沉沉浮浮，也会有海阔天空的美好，恩怨是非，也终是云淡风轻的历练，花开花落轮回间，风景在辗转，总有些留不住的，也总有抵达不了的，淡定豁达才会释然，内心明朗才会踏实快乐。',
-					creatTime:'2017-12-30 09:23'
-				}
-			]
+			talkList:null
 		}
 	},
 	methods:{
 		send_talking(){
-			let pamrams = {
-				name:'123456',
+			let params = {
+				name:this.userName,
 				theme:'1',
 				title:'',
 				content:this.textarea
 			}
-			console.log(pamrams)
-			return this.$http.post('/blog/article/save',pamrams,{
+			console.log(params)
+			return this.$http.post('/blog/article/save',params,{
             headers:{
               'Content-Type':'application/x-www-form-urlencoded;'
             },
             emulateJSON:true
           }).then((response)=>{
-
-				console.log(response)
+				this.getData();
+			}).catch((error)=>{
+				console.log(error)
+			})
+		},
+		getData(){
+			let params = {
+				name:this.userName
+			}
+			return this.$http.get('/blog/article/save',{
+				params:params
+			}).then((response)=>{
+				this.talkList = response.body.data;
 			}).catch((error)=>{
 				console.log(error)
 			})
 		}
+
 	}
 }
 

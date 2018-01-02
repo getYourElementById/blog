@@ -5,7 +5,7 @@
 				<div class="userImg">
 				<div class="shadow"></div>
 				</div>
-				<span class="userName">myBlog</span>
+				<span class="userName">{{blogName}}</span>
 				<div class="signOut">sign out</div>
 				<ul class="navBar">
 					<li><span>home</span></li>
@@ -24,12 +24,14 @@
 
 <script>
 import('./home.scss')
+import localInfo from '@/components/userInfo'
 
 
 export default {
 	name:'home',
 	data(){
 		return{
+			blogName:localInfo.get().blogname,
 			activeIndex: '1',
         	activeIndex2: '1'
 		}
