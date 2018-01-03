@@ -21,9 +21,21 @@
 		font-size:1.5rem;
 		color:$fontColor;
 		margin-top:10rem;
+		.noTalking{
+			text-align:center;
+		}
 		p{
 			line-height:3rem;
 			font-size:$fontSize;
+
+		}
+		.delete{
+			margin-left:10px;
+			color:$red;
+			cursor:pointer;
+		}
+		.delete:hover{
+			color:#FA1100;
 		}
 		.talkingItem{
 			margin:2rem;

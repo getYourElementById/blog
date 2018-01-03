@@ -1,8 +1,8 @@
 var localInfo = {
 	setObj:setObjFuc,
 	set:setFuc,
-	get:getFuc
-	// clear:clearFuc
+	get:getFuc,
+	clear:clearFuc
 }
 
 function setObjFuc(obj){
@@ -26,4 +26,17 @@ function getFuc(){
 	delete obj.password;
 	return obj;
 }
+
+function clearFuc(){
+	let obj = {
+		name:'',
+		blogname:'',
+		password:'',
+		phone:'',
+		sex:''
+	}
+	setObjFuc(obj);
+}
+
+
 module.exports=localInfo;

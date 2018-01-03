@@ -15,11 +15,11 @@
           </el-input>
         </el-form-item>
         <el-form-item label="博客名称" prop="blogName" v-if="!isLogin">
-          <el-input :maxlength="20" size="small" placeholder="请输入密码" v-model="loginForm.blogName">
+          <el-input :maxlength="20" size="small" placeholder="请输入博客名" v-model="loginForm.blogName">
           </el-input>
         </el-form-item>
         <el-form-item>
-        	<el-button size="small" type="primary" @click="login()">{{isLogin?'登录':'注册'}}</el-button>
+        	<el-button size="small" type="primary" @click="login">{{isLogin?'登录':'注册'}}</el-button>
           <span class="registryBtn" v-if="isLogin" @click="switchLogin">没有账号?<span>立即注册……</span></span>
           <span class="registryBtn" v-else @click="switchLogin">已有账号?<span>立即登录……</span></span>
         </el-form-item>
@@ -55,13 +55,17 @@ export default {
       loginRule:{
         userName:[{ required:true,message:'用户名不能为空!',trigger: 'change'}],
         passWord:[{ required: true, message: '密码不能为空!',trigger: 'change'}],
-        confirmpPassWord:[{ validator: confirmpPassWord, trigger: 'change'}],
+        confirmpPassWord:[{required: true, validator: confirmpPassWord, trigger: 'change'}],
         blogName:[{ required: true, message: '名称不能为空!',trigger: 'change'}]
       }
     }
   },
   methods:{
     login(){
+      if(!this.isLogin){
+        this.register();
+        return;
+      }
       this.$refs.loginForm.validate((valid)=>{
         var pamrams = {
           userName : this.loginForm.userName,
@@ -75,7 +79,7 @@ export default {
             emulateJSON:true
           }).then((response)=>{
             if(response.body.data){
-              this.$router.push('home')
+              this.$router.push('home');
               localInfo.setObj(response.body.data);
             }else{
               this.$message.error(response.data);
@@ -88,7 +92,33 @@ export default {
     },
     switchLogin(){
       this.isLogin=!this.isLogin;
-    }
+    },
+    register(){
+      this.$refs.loginForm.validate((valid)=>{
+        var pamrams = {
+          userName : this.loginForm.userName,
+          passWord : this.loginForm.passWord,
+          blogName : this.loginForm.blogName
+        }
+        if(valid){
+          this.$http.post('/blog/register/save',pamrams,{
+            headers:{
+              'Content-Type':'application/x-www-form-urlencoded;'
+            },
+            emulateJSON:true
+          }).then((response)=>{
+            if(response.body.data){
+              this.$message.success(response.body.msg);
+              this.switchLogin();
+            }else{
+              this.$message.error(response.data);
+            }
+          }).catch((error)=>{
+
+          })
+        }
+      })
+    },
   }
 }
 </script>

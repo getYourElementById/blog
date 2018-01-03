@@ -3,6 +3,9 @@ import Router from 'vue-router'
 import Login from '@/components/login/login'
 import Home from '@/components/homePage/home'
 import Center from '@/components/homePage/center/center'
+import Blog from '@/components/homePage/blog/blog'
+import UserCenter from '@/components/homePage/userCenter/userCenter'
+import Setting from '@/components/homePage/setting/setting'
 
 Vue.use(Router)
 
@@ -29,6 +32,30 @@ export const router = new Router({
           component: Center,
           meta:{
             title:'个人中心'
+          },
+        },
+        {
+          path: '/blog',
+          name: 'blog',
+          component: Blog,
+          meta:{
+            title:'博客'
+          },
+        },
+        {
+          path: '/userCenter',
+          name: 'userCenter',
+          component: UserCenter,
+          meta:{
+            title:'个人中心'
+          },
+        },
+        {
+          path: '/setting',
+          name: 'setting',
+          component: Setting,
+          meta:{
+            title:'设置'
           },
         }
       ]

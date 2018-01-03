@@ -8,6 +8,7 @@
 		background:#fff;
 		z-index:999;
 		.headerContent{
+			cursor:pointer;
 			position:relative;
 			width:1200px;
 			height:100%;
@@ -53,6 +54,14 @@
 						padding:0 20px;
 						border-right:1px #999 solid;
 					}
+					span:hover{
+						font-size:1.3rem;
+						font-weight:bolder;
+					}
+					.actived{
+						font-size:1.3rem;
+						font-weight:bolder;
+					}
 					
 				}
 			}
@@ -72,6 +81,10 @@
 				height:30px;
 				line-height:30px;
 				overflow:hidden;
+			}
+			.signOut:hover{
+				background:#999;
+				color:#fff;
 			}
 		}
 	
